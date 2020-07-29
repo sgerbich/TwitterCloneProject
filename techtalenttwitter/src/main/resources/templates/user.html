@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+>
+  <head>
+    <title>Feed</title>
+    <link
+      href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../static/custom.js"></script>
+    <!-- <link rel="stylesheet" href="../static/custom.css"> -->
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div th:replace="fragments/navbar"></div>
+      <h2>Profile for <span th:text="${user.firstName}"></span> 
+        <span th:text="${user.lastName}"></span> - <span style="color: #00aced">
+        @<span th:text="${user.username}"></span></span></h2>
+        <h5>Joined <span th:text="${#dates.format(user.createdAt, 'MMMM dd, yyyy')}"></span></h5>
+        <form th:action="@{/follow/} + ${user.username}" th:if="${!following}" method="post">
+            <button style="float:right" type="Submit" class="btn btn-lg btn-success">Follow</button>
+        </form>
+        <form th:action="@{/unfollow/} + ${user.username}" th:if="${following}" method="post">
+            <button style="float:right" type="Submit" class="btn btn-lg btn-primary unfollow_btn">Following</button>
+        </form>
+        <h3>Tweets</h3>	
+        <div class="list-group" th:each="tweet:${tweetList}">
+            <div class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5>@<span th:text="${tweet.user.username}"></span>
+                    <span th:text="${#dates.format(tweet.createdAt, 'M/d/yy')}"></small></h5>
+                </div>
+                <p class="mb-1" th:utext="${tweet.message}"></p>
+            </div>
+        </div>
+        <div th:if="${not #lists.isEmpty(tweetList)}">
+            <h3>Tweets</h3>
+        </div>
+        <div th:if="${#lists.isEmpty(tweetList)}">
+            <h3>No Recent Tweets</h3>
+        </div>
+        
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

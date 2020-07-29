@@ -3,26 +3,25 @@
   xmlns:th="http://www.thymeleaf.org"
   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
 >
-  <head>
-    <title>Log in</title>
-    <link
-      href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/styling.css" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/index.js"></script>
-    <link rel="stylesheet" href="../static/custom.css" />
-  </head>
+<head>
+  <meta charset="UFT-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Tweet</title>
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+  />
+  <link rel="stylesheet" href="/custom.css" />
+  <script src="/custom.js"></script>
+</head>
 
   <body>
     <div class="container">
+      <div th:replace="fragments/navbar"></div>
       <div class="jumbotron col-md-8 col-md-offset-2">
         <h2>New Tweet</h2>
         <br />
@@ -63,5 +62,9 @@
         </div>
       </div>
     </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </body>
 </html>
